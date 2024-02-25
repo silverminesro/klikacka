@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odpočet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        #countdown {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f00;
+        }
+    </style>
+    <script>
+        function startCountdown() {
+            var countDownDate = new Date();
+            countDownDate.setMinutes(countDownDate.getMinutes() + 10); // Pridá 10 minút k aktuálnemu času
+            var interval = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("countdown").innerHTML = minutes + "m " + seconds + "s ";
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById("countdown").innerHTML = "Čas vypršal";
+                    // Ak chcete, aby sa odpočet automaticky znova spustil, odkomentujte riadok nižšie
+                    // startCountdown();
+                }
+            }, 1000);
+        }
+        window.onload = startCountdown;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Odpočet 10 minút</h1>
+        <p>Do konca zostáva: <span id="countdown"></span></p>
+    </div>
+</body>
+</html>
